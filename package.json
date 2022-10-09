@@ -1,21 +1,21 @@
 {
-  "name": "parcel-project-template",
+  "name": "goit-js-hw-09-gallerye",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://animus93.github.io/Lesson9/",
+  "homepage": "https://animus93.github.io/goit-js-hw-09-gallery/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /Lesson9/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-09-gallery/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/Animus93/goit-js-hw-09-gallery.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "Dmitriy Eremin <animus.dmitriy@yandex.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/goitacademy/parcel-project-template/issues"
+    "url": "https://github.com/Animus93/goit-js-hw-09-gallery/issues"
   },
   "dependencies": {
     "modern-normalize": "^1.1.0"
