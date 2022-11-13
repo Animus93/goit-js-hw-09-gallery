@@ -37,45 +37,45 @@ function onOpenModal (url, index) {
   refs.divLightbox.addEventListener('click',onEscape);
   refs.divLightboxImg.dataset.index = index;
   refs.divLightboxImg.src = url;
-
   refs.divLightbox.classList.add("is-open");
-
 };
 
 function onEscape (event) {
-  if(event.target.dataset.action === "close-lightbox" || event.target.className === "lightbox__overlay" || event.code === 'Escape' )
-  {
+  if(event.target.dataset.action === "close-lightbox" || event.target.className === "lightbox__overlay" || event.code === 'Escape' ){
     closeModal();
-  };
-
-};
+  }};
 
 function closeModal () {
   refs.divLightbox.classList.remove("is-open");
-  refs.divLightboxImg.src = '';
-  refs.divLightboxImg.dataset.index = '';
+  updateSource();
   window.removeEventListener('keydown',onEscape);
   refs.divLightbox.removeEventListener('click',onEscape);
 };
 
+function updateSource(index = '') {
+  refs.divLightboxImg.dataset.index = index;
+  if(index === ''){
+    return refs.divLightboxImg.src = index;
+  };
+  refs.divLightboxImg.src = refs.ulGallery.children[index].firstElementChild.href;
+};
+
 window.addEventListener('keydown', (event)=>{
   if(refs.divLightbox.classList.contains('is-open')){
-    let currentIndex = Number(refs.divLightboxImg.dataset.index)
-    if(event.code === 'ArrowRight'){
-    currentIndex += 1;
-    if(currentIndex > galleryItems.length-1){
-      currentIndex = 0;
-    }
-      refs.divLightboxImg.dataset.index = refs.ulGallery.childNodes[currentIndex].children[0].children[0].dataset.index
-      refs.divLightboxImg.src = refs.ulGallery.childNodes[currentIndex].children[0].children[0].dataset.source
-    } 
-    if(event.code === 'ArrowLeft'){
-    currentIndex -= 1;
-    if(currentIndex < 0){
-      currentIndex = galleryItems.length-1;
-    }
-      refs.divLightboxImg.dataset.index = refs.ulGallery.childNodes[currentIndex].children[0].children[0].dataset.index;
-      refs.divLightboxImg.src =refs.ulGallery.childNodes[currentIndex].children[0].children[0].dataset.source;
-    }
-  }
-})
+    let currentIndex = Number(refs.divLightboxImg.dataset.index);
+      if(event.code === 'ArrowRight'){
+        currentIndex += 1;
+        if(currentIndex > galleryItems.length-1){
+          currentIndex = 0;
+        }
+          updateSource(currentIndex);
+        } 
+      if(event.code === 'ArrowLeft'){
+      currentIndex -= 1;
+        if(currentIndex < 0){
+          currentIndex = galleryItems.length-1;
+        };
+          updateSource(currentIndex);
+        };
+  };
+});
